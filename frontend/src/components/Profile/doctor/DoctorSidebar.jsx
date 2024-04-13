@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/UserSlice.js";
-import docProfile from "../../../assets/doct2.jpg";
+import docProfile from "../../../assets/doctor.jpg";
 const DoctorSidebar = ({ profilePic, userName }) => {
   const navLinkStyle = ({ isActive }) => {
     return {
@@ -32,7 +32,7 @@ const DoctorSidebar = ({ profilePic, userName }) => {
         <div className="w-full flex flex-col items-center gap-3">
           <img
             src={docProfile}
-            className="size-24 rounded-full"
+            className="size-40 rounded-full"
             alt="profile"
           />
           <p>{userName}</p>
@@ -40,31 +40,31 @@ const DoctorSidebar = ({ profilePic, userName }) => {
         <div className="flex flex-col items-start w-full gap-4 ">
           <NavLink
             style={navLinkStyle}
-            className={"w-full  p-2 h-[40px] "}
+            className={"w-full  p-2 h-[40px] rounded"}
             to="/doctor-profile"
           >
             Settings
           </NavLink>
           <NavLink
             style={navLinkStyle}
-            className={"w-full  p-2 h-[40px] "}
+            className={"w-full  p-2 h-[40px] rounded"}
             to="/doctor-appointments"
           >
             Appointments
           </NavLink>
           <NavLink
             style={navLinkStyle}
-            className={"w-full p-2 h-[40px] "}
+            className={"w-full p-2 h-[40px] rounded"}
             to="/doctor-review"
           >
             Message
           </NavLink>
         </div>
       </div>
-      <div className="w-full text-center  h-[80px] p-2">
+      <div className="w-full text-center">
         <button
           onClick={handleSignOut}
-          className="bg-black text-white rounded-full text-md font-medium p-2 cursor-pointer hover:scale-110 duration-200 active:scale-90 "
+          className="bg-black text-white rounded-full text-md font-medium p-2 w-full cursor-pointer hover:bg-gray-800 transition-colors duration-200"
         >
           Sign Out
         </button>

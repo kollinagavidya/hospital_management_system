@@ -78,6 +78,40 @@ function AdminNurse() {
       });
   };
 
+  const deleteNurse = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User confirmed deletion
+        axios
+          .delete(`http://localhost:4451/admin/delete-nurse/${id}`)
+          .then((res) => {
+            Swal.fire({
+              title: "Success",
+              icon: "success",
+              text: "Nurse Deleted Successfully!",
+            });
+            window.location.reload();
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Error",
+              icon: "error",
+              text: "Error Deleting Nurse!",
+            });
+          });
+      }
+      // If result.isConfirmed is false, user clicked "Cancel"
+    });
+  };
+
   const [isCreate, setIsCreate] = useState(false);
 
   const handleCreate = () => {
@@ -111,6 +145,9 @@ function AdminNurse() {
                     <th scope="col" className="px-6 py-3">
                       Department
                     </th>
+                    <th scope="col" className="px-6 py-3">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -127,7 +164,31 @@ function AdminNurse() {
                           {item.ward}
                         </td>
                         <td scope="col" className="px-6 py-3">
-                          {item.department.name}
+                          {item.department?.name}
+                        </td>
+                        <td scope="col" className="d-flex gap-3 ">
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <button
+                              as="link"
+                              onClick={() => {
+                                deleteNurse(item._id);
+                              }}
+                              className="btn btn-danger"
+                              style={{
+                                backgroundColor: "#FF7F7F",
+                                color: "white",
+                                padding: "0.5rem",
+                                borderRadius: "1rem",
+                              }}
+                            >
+                              Remove
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
