@@ -9,13 +9,11 @@ function UserMedication() {
 
   const [medicines, setMedicines] = useState([]);
 
-
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://18.117.148.157:4451/user/get-medications/${userData.email}`
+          `http://localhost:4451/user/get-medications/${userData.email}`
         );
 
         const data = response.data;
@@ -44,7 +42,7 @@ function UserMedication() {
         <UserSidebar profiePic={profiePic} userName={userData.userName} />
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-start gap-5 ">
           <p className="font-semibold text-3xl">Medications</p>
-          <div className="w-full">
+          <div className="w-full overflow-y-auto">
             {!medicines ? (
               <p>Medications are not prescribed</p>
             ) : (

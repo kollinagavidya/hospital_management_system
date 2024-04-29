@@ -18,7 +18,7 @@ function AdminDoctor() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://18.117.148.157:4451/doctor/get-doctors"
+          "http://localhost:4451/doctor/get-doctors"
         );
         setDoctors(response.data);
       } catch (error) {
@@ -40,7 +40,7 @@ function AdminDoctor() {
   const handleAddDoctor = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://18.117.148.157:4451/doctor/add-doctor", {
+      .post("http://localhost:4451/doctor/add-doctor", {
         name: docname,
         specialization: docspec,
         email: docemail,
@@ -67,7 +67,7 @@ function AdminDoctor() {
 
   const editPatient = async (id) => {
     await axios
-      .put(`http://18.117.148.157:4451/doctor/update-doctor/${id}`, {})
+      .put(`http://localhost:4451/doctor/update-doctor/${id}`, {})
       .then((res) => {
         Swal.fire({
           title: "Success",
@@ -97,7 +97,7 @@ function AdminDoctor() {
       if (result.isConfirmed) {
         // User confirmed deletion
         axios
-          .delete(`http://18.117.148.157:4451/doctor/delete-doctor/${id}`)
+          .delete(`http://localhost:4451/doctor/delete-doctor/${id}`)
           .then((res) => {
             Swal.fire({
               title: "Success",
@@ -134,7 +134,7 @@ function AdminDoctor() {
         <AdminSidebar userName={"Admin"} profiePic={profiePic} />
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-start gap-5 ">
           <p className="font-semibold text-3xl">Doctors</p>
-          <div className="w-full">
+          <div className="w-full overflow-y-auto">
             <div className="relative overflow-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

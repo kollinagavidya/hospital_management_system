@@ -32,7 +32,7 @@ function UserAppointment() {
     const fetchAppointments = async (id) => {
       try {
         const res = await axios.get(
-          `http://18.117.148.157:4451/appointment/get-appointments/${id}`
+          `http://localhost:4451/appointment/get-appointments/${id}`
         );
         setAppointments(res.data);
         console.log(res.data);
@@ -69,7 +69,7 @@ function UserAppointment() {
       if (result.isConfirmed) {
         // User confirmed deletion
         axios
-          .delete(`http://18.117.148.157:4451/appointment/delete-appointment/${id}`)
+          .delete(`http://localhost:4451/appointment/delete-appointment/${id}`)
           .then((res) => {
             Swal.fire({
               title: "Success",
@@ -99,7 +99,7 @@ function UserAppointment() {
           style={{ alignItems: "center", paddingTop: "4rem" }}
         >
           <p className="font-semibold text-3xl">Appointmnets</p>
-          <div className="w-full">
+          <div className="w-full overflow-y-auto">
             <div className="relative overflow-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left rtl:text-right">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

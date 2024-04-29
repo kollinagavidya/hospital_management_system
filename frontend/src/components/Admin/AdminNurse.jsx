@@ -18,7 +18,7 @@ function AdminNurse() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://18.117.148.157:4451/admin/get-department"
+          "http://localhost:4451/admin/get-department"
         );
         setDepartments(response.data);
       } catch (error) {
@@ -36,7 +36,7 @@ function AdminNurse() {
   useEffect(() => {
     const getNurses = async () => {
       const data = await axios
-        .get("http://18.117.148.157:4451/nurse/get-nurses")
+        .get("http://localhost:4451/nurse/get-nurses")
         .then((response) => {
           setNurses(response.data);
         })
@@ -55,7 +55,7 @@ function AdminNurse() {
   const handleAddNurse = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://18.117.148.157:4451/nurse/add-nurse", {
+      .post("http://localhost:4451/nurse/add-nurse", {
         name: nurname,
         email: nuremail,
         department: nurdept,
@@ -91,7 +91,7 @@ function AdminNurse() {
       if (result.isConfirmed) {
         // User confirmed deletion
         axios
-          .delete(`http://18.117.148.157:4451/admin/delete-nurse/${id}`)
+          .delete(`http://localhost:4451/admin/delete-nurse/${id}`)
           .then((res) => {
             Swal.fire({
               title: "Success",
@@ -128,7 +128,7 @@ function AdminNurse() {
         <AdminSidebar userName={"Admin"} profiePic={profiePic} />
         <div className=" w-[70%] ms-24 p-4 flex flex-col justify-start gap-5 ">
           <p className="font-semibold text-3xl">Nurses</p>
-          <div className="w-full">
+          <div className="w-full overflow-y-auto">
             <div className="relative overflow-auto shadow-md sm:rounded-lg">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
